@@ -59,6 +59,20 @@ export default function ParallaxScrollView({
   );
 }
 
+export function ScrollView({
+  children,
+}: Props) {
+  const scrollRef = useAnimatedRef<Animated.ScrollView>();
+
+  return (
+    <ThemedView style={styles.container}>
+      <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
+        <ThemedView style={styles.content}>{children}</ThemedView>
+      </Animated.ScrollView>
+    </ThemedView>
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

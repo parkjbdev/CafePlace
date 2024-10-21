@@ -17,6 +17,24 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
+          title: '큐레이션',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'cafe' : 'cafe-outline'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="map"
+        options={{
+          title: '지도',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'map' : 'map-outline'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="home"
+        options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
