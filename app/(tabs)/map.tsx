@@ -1,25 +1,28 @@
 import { Image, StyleSheet, Platform, View, Alert, Linking, Button } from 'react-native';
-import { NaverMapView } from '@mj-studio/react-native-naver-map';
+import { NaverMapCircleOverlay, NaverMapMarkerOverlay, NaverMapPathOverlay, NaverMapPolygonOverlay, NaverMapView } from '@mj-studio/react-native-naver-map';
 import * as Location from "expo-location";
 import React, { useEffect, useState } from 'react';
 import { ThemedText } from '@/components/ThemedText';
+import { Ionicons } from '@expo/vector-icons';
+
 
 export default function HomeScreen() {
   const [status, requestPermission] = Location.useForegroundPermissions();
   const [camera, setCamera] = useState<{ latitude: number, longitude: number } | undefined>(undefined);
 
+  const [cafes, setCafes] = useState<any[]>([]);
+  const url = 'https://pages.map.naver.com/save-pages/api/maps-bookmark/v3/shares/863dc82b56c94070879b3cfa2c706b1f/bookmarks?sort=lastUseTime'
+
   useEffect(() => {
-    // requestPermission()
-    // setCameraToCurrentLocation()
-    // (async () => {
-    //   await checkGeoPermission()
-    //   await checkGeoPermission()
-    //   await setCameraToCurrentLocation()
-    // })();
     checkGeoPermission()
       .catch(grantGeoPermission)
       .finally(setCameraToCurrentLocation)
-
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        setCafes(data.bookmarkList)
+        console.log(`Cafe Set: ${data}`)
+      })
   }, []);
 
   const checkGeoPermission = async () => {
@@ -60,11 +63,36 @@ export default function HomeScreen() {
         isIndoorEnabled
         isShowIndoorLevelPicker
         isExtentBoundedInKorea
-        // isLiteModeEnabled
-        isShowLocationButton={false}
+        isLiteModeEnabled
+        // isShowLocationButton={false}
         isShowZoomControls={false}
-      />
-    </View>
+      >
+        {cafes.map((cafe, index) => {
+          return <NaverMapMarkerOverlay
+            key={cafe.bookmarkId}
+            latitude={cafe.py}
+            longitude={cafe.px}
+            caption={{
+              text: cafe.name,
+            }}
+            subCaption={{
+              text: cafe.memo,
+            }}
+            onTap={() => Alert.alert(cafe.name, `${cafe.address}`)}
+            isMaxZoomInclusive
+            // minZoom={20}
+            isHideCollidedCaptions
+            isHideCollidedMarkers
+            isMinZoomInclusive={false}
+            isIconPerspectiveEnabled
+          >
+            <View style={{ width: 20, height: 20, borderRadius: 10 }}>
+              <Ionicons size={20} name="cafe" />
+            </View>
+          </NaverMapMarkerOverlay>
+        })}
+      </NaverMapView>
+    </View >
   );
 }
 
