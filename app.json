@@ -55,6 +55,31 @@
           "locationWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location.",
           "isAndroidForegroundServiceEnabled": true
         }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/CormorantGaramond-Bold.ttf",
+            "./assets/fonts/CormorantGaramond-BoldItalic.ttf",
+            "./assets/fonts/CormorantGaramond-SemiBold.ttf",
+            "./assets/fonts/CormorantGaramond-SemiBoldItalic.ttf",
+            "./assets/fonts/CormorantGaramond-Medium.ttf",
+            "./assets/fonts/CormorantGaramond-MediumItalic.ttf",
+            "./assets/fonts/CormorantGaramond-Light.ttf",
+            "./assets/fonts/CormorantGaramond-LightItalic.ttf",
+            "./assets/fonts/CormorantGaramond-Regular.ttf",
+            "./assets/fonts/CormorantGaramond-Italic.ttf",
+            "./assets/fonts/NotoSerifKR-Bold.ttf",
+            "./assets/fonts/NotoSerifKR-Black.ttf",
+            "./assets/fonts/NotoSerifKR-Light.ttf",
+            "./assets/fonts/NotoSerifKR-Medium.ttf",
+            "./assets/fonts/NotoSerifKR-Regular.ttf",
+            "./assets/fonts/NotoSerifKR-SemiBold.ttf",
+            "./assets/fonts/NotoSerifKR-ExtraBold.ttf",
+            "./assets/fonts/NotoSerifKR-ExtraLight.ttf"
+          ]
+        }
       ]
     ],
     "experiments": {
