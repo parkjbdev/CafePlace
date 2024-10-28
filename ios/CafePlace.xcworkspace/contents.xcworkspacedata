@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Secrets.xcconfig">
-   </FileRef>
-   <FileRef
       location = "group:CafePlace.xcodeproj">
    </FileRef>
    <FileRef
