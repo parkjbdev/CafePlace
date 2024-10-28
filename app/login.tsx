@@ -1,21 +1,19 @@
-import { Ionicons } from "@expo/vector-icons";
-import { TouchableHighlight, TouchableWithoutFeedback, StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, Alert, Button, TextInputComponent } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import NaverLogo from '@/assets/logos/naver.svg';
 import AppleLogo from '@/assets/logos/apple.svg';
 import GoogleLogo from '@/assets/logos/google.svg';
 import KakaoLogo from '@/assets/logos/kakao.svg';
-import { Link } from "expo-router";
+import { router } from "expo-router";
+import Logo from "@/components/Logo";
 
 export default function Page() {
   return <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#603F26" }}>
-    <Text style={{ fontFamily: 'CormorantGaramond-Italic', fontSize: 40, margin: 16, color: "#FFDBB5" }} >CafePlace</Text>
+    <Logo style={{ color: "#FFDBB5" }} />
     <View style={{ width: 248 }}>
       <TextInput value="" style={{ height: 40, padding: 8, marginVertical: 4, borderBottomWidth: 0.2, fontFamily: 'CormorantGaramond-Italic', fontSize: 16, color: "#FFDBB5" }} placeholder="아이디" placeholderTextColor="#AF8F6F" />
       <TextInput value="" style={{ height: 40, padding: 8, marginVertical: 4, borderBottomWidth: 0.2, fontFamily: 'CormorantGaramond-Italic', fontSize: 16, color: "#FFDBB5" }} secureTextEntry placeholder="비밀번호" placeholderTextColor="#AF8F6F" />
     </View>
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => router.replace('/')}>
       <View style={{ backgroundColor: "#543310", borderRadius: 5, paddingHorizontal: 60, paddingVertical: 16, width: 248, alignItems: "center" }}>
         <Text style={{ color: "white" }}>로그인</Text>
       </View>
@@ -45,10 +43,14 @@ export default function Page() {
       </TouchableOpacity>
     </View>
 
-    <TouchableOpacity style={{ flexDirection: "row", gap: 32, margin: 8 }}>
-      <Text style={{ color: "#AF8F6F" }}>회원가입</Text>
-      <Text style={{ color: "#AF8F6F" }}>ID/PW 찾기</Text>
-    </TouchableOpacity>
+    <View style={{ flexDirection: "row", gap: 32 }}>
+      <TouchableOpacity style={{ margin: 8 }}>
+        <Text style={{ color: "#AF8F6F" }}>회원가입</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={{ margin: 8 }}>
+        <Text style={{ color: "#AF8F6F" }}>ID/PW 찾기</Text>
+      </TouchableOpacity>
+    </View>
 
   </View >
 }
@@ -61,7 +63,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     margin: 8,
-    // shadowOpacity: 0.1,
-    // shadowRadius: 4.65,
   }
 })
