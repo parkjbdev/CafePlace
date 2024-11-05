@@ -5,9 +5,9 @@ import { SectionList, SectionElement } from '@/components/SectionList';
 
 export default function HomeScreen() {
   return (
-    <ScrollView style={{ flex: 1, padding: 16 }}>
+    <ScrollView style={{ flex: 1, padding: 16, paddingTop: 0 }}>
       <SafeAreaView />
-      <Text style={{ fontFamily: 'CormorantGaramond-Italic', textAlign: "center", fontSize: 40, margin: 16 }} >CafePlace</Text>
+      {/* <Text style={{ fontFamily: 'CormorantGaramond-Italic', textAlign: "center", fontSize: 40, margin: 16 }} >CafePlace</Text> */}
       <SectionList title="Account">
         <TouchableOpacity
           onPress={() => {

@@ -1,9 +1,11 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import Logo from '@/components/Logo';
+import { SafeAreaView } from 'react-native';
+import HeaderLogo from '@/components/HeaderLogo';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -13,8 +15,11 @@ export default function TabLayout() {
       screenOptions={{
         tabBarInactiveTintColor: Colors[colorScheme ?? 'light'].tabIconDefault,
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarInactiveBackgroundColor: Colors[colorScheme ?? 'light'].background,
         headerShown: false,
-      }}>
+        header: () => <HeaderLogo />
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
@@ -28,26 +33,21 @@ export default function TabLayout() {
         name="map"
         options={{
           title: '지도',
+          headerShown: true,
+          headerTransparent: true,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'map' : 'map-outline'} color={color} />
           ),
         }}
       />
+
       <Tabs.Screen
-        name="home"
+        name="myinfo"
         options={{
-          title: 'Home',
+          title: '내 정보',
+          headerShown: true,
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <TabBarIcon name={focused ? 'person' : 'person-outline'} color={color} />
           ),
         }}
       />
