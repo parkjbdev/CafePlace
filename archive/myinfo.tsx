@@ -3,7 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { SectionList, SectionElement } from '@/components/SectionList';
 
-export default function MyInfoPage() {
+export default function HomeScreen() {
   return (
     <ScrollView style={{ flex: 1, padding: 16, paddingTop: 0 }}>
       <SafeAreaView />

@@ -6,7 +6,6 @@ import MapView, { Marker } from 'react-native-maps';
 import { BookmarkPlace } from '@/interfaces/map';
 import { fetchSummary } from '@/api/fetchCafes';
 
-
 export default function MapPage() {
   const [cafes, setCafes] = useState<BookmarkPlace[]>([]);
   const [selectedCafeIdx, setSelectedCafeIdx] = useState<number | null>(null)

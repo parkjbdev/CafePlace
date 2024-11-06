@@ -2,9 +2,10 @@ import { router, useLocalSearchParams } from "expo-router";
 import { useRef } from "react";
 import { TouchableOpacity, SafeAreaView, ActivityIndicator, ScrollView, Text, View } from "react-native";
 import Markdown from "react-native-markdown-display";
+import Animated from "react-native-reanimated";
 
 export default function CafeDetail() {
-  const { sid } = useLocalSearchParams();
+  const { sid, data } = useLocalSearchParams();
 
   const copy = `
 ![Image](https://picsum.photos/1600)
@@ -37,9 +38,22 @@ Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labor
       <TouchableOpacity onPress={() => router.back()}>
         <Text>Back</Text>
       </TouchableOpacity>
+
+      <Text>{sid}</Text>
+      <Text>{data}</Text>
+      {/* <Text>{JSON.parse(data as string)["name"]}</Text> */}
+
       <Markdown>
         {copy}
       </Markdown>
+      {/* <Animated.Image */}
+      {/*   sharedTransitionTag={sid as string} */}
+      {/*   style={{ flex: 1, objectFit: "cover", height: 6000 }} */}
+      {/*   source={{ */}
+      {/*     uri: imgUrl as string */}
+      {/*   }} */}
+      {/* /> */}
+
       <SafeAreaView />
     </ScrollView>
   );

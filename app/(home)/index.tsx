@@ -5,7 +5,7 @@ import { Link, router } from 'expo-router';
 import { fetchDetails } from '@/api/fetchCafes';
 import Animated from 'react-native-reanimated';
 
-export default function HomeScreen() {
+export default function Home() {
   const width = Dimensions.get('window').width;
 
   const [cafes, setCafes] = useState([])
