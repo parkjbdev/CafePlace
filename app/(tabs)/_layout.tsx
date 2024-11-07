@@ -21,7 +21,7 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="curations"
         options={{
           title: '큐레이션',
           tabBarIcon: ({ color, focused }) => (

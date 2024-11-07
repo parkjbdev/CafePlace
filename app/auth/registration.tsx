@@ -18,6 +18,6 @@ export default function Page() {
     <Logo style={[{ color: "#FFDBB5" }, animatedStyles]} />
     <Text style={{ color: "white" }}>카페 큐레이팅</Text>
     <Button onPress={handlePress} title="Click me" />
-    <Button onPress={() => router.push('/(home)')} title="route"/>
+    <Button onPress={() => router.push('/')} title="route" />
   </View >
 }

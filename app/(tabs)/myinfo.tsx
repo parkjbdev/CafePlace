@@ -2,8 +2,16 @@ import { SafeAreaView, Image, StyleSheet, View, Text, TouchableOpacity, Switch, 
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { SectionList, SectionElement } from '@/components/SectionList';
+import { useAuth } from '@/context/AuthContext';
+import { useEffect } from 'react';
 
 export default function MyInfoPage() {
+  const { session, loading } = useAuth()
+  useEffect(() => {
+    console.log('hello')
+    console.log(session)
+  }, [])
+
   return (
     <ScrollView style={{ flex: 1, padding: 16, paddingTop: 0 }}>
       <SafeAreaView />
@@ -21,8 +29,8 @@ export default function MyInfoPage() {
             }}
             style={styles.profileAvatar} />
           <View style={styles.profileBody}>
-            <Text style={styles.profileName}>John Doe</Text>
-            <Text style={styles.profileHandle}>john@example.com</Text>
+            <Text style={styles.profileName}>{session?.user.id}</Text>
+            <Text style={styles.profileHandle}>{session?.user.email}</Text>
           </View>
           <Ionicons name="chevron-forward" size={19} color="#bcbcbc" />
         </TouchableOpacity>
@@ -68,7 +76,7 @@ export default function MyInfoPage() {
           }
         } onPress={() => {
           router.canDismiss() && router.dismissAll()
-          router.replace('/login')
+          router.replace('/auth/login')
         }} />
       </SectionList>
 
