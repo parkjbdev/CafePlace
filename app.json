@@ -13,8 +13,9 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.parkjb.cafeplace"
+      "supportsTablet": false,
+      "bundleIdentifier": "com.parkjb.cafeplace",
+      "usesAppleSignIn": true,
     },
     "android": {
       "adaptiveIcon": {
@@ -45,6 +46,7 @@
           "android": {}
         }
       ],
+      "expo-apple-authentication",
       [
         "expo-location",
         {

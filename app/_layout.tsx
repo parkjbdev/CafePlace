@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Provider } from 'jotai';
+import { AuthProvider, useAuth } from '@/context/AuthContext';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -27,19 +28,23 @@ export default function RootLayout() {
   }
 
   return (
-    <Provider>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(home)" />
-          <Stack.Screen name="cafes/[sid]" options={{
-            animation: "fade_from_bottom",
-            gestureEnabled: false
-          }} />
-          <Stack.Screen name="login" />
-          <Stack.Screen name="(registration)" />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-      </ThemeProvider>
-    </Provider>
+    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <AuthProvider>
+        <Provider>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="index" />
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="cafes/[sid]" options={{
+              presentation: "containedModal",
+              // animation: "fade_from_bottom",
+              gestureEnabled: false
+            }} />
+            <Stack.Screen name="auth/login" />
+            <Stack.Screen name="auth/registration" />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+        </Provider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
