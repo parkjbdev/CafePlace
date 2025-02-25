@@ -86,8 +86,7 @@ const StepForm: React.FC = () => {
       <View
         style={{
           flex: 1,
-          padding: 32,
-          paddingBottom: 0,
+          paddingHorizontal: 32,
         }}
       >
         <SlideTransition style={{ flex: 1 }}>

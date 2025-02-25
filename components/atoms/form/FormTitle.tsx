@@ -17,7 +17,6 @@ const FormTitle = ({ title, description }: FormTitleProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 16,
   },
   title: {
     fontSize: 24,

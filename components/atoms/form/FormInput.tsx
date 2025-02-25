@@ -43,9 +43,7 @@ const FormInput = ({ error, ...props }: FormInputProps & TextInputProps) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginBottom: 16,
-  },
+  container: {},
   inputContainer: {
     backgroundColor: "transparent",
     paddingHorizontal: 0,
