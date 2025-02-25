@@ -1,4 +1,3 @@
-// ProgressBar.tsx
 import React from "react";
 import { StyleSheet, View, Text, Animated } from "react-native";
 
@@ -27,10 +26,7 @@ const ProgressBar = ({ currentStep, stepLength }: ProgressBarProps) => {
     <View style={styles.progressContainer}>
       <View style={styles.progressBar}>
         <Animated.View
-          style={[
-            styles.progressFill,
-            { width: widthInterpolated },
-          ]}
+          style={[styles.progressFill, { width: widthInterpolated }]}
         />
       </View>
       <Text style={styles.progressText}>
@@ -48,17 +44,17 @@ const styles = StyleSheet.create({
     textAlign: "right",
     marginTop: 8,
     fontSize: 14,
-    color: "#D4BBA7", // 밝은 베이지 (어두운 배경에 대비)
+    color: "#D4BBA7",
     fontWeight: "500",
   },
   progressBar: {
     height: 8,
-    backgroundColor: "#815C42", // 배경보다 약간 밝은 갈색
+    backgroundColor: "#815C42",
     borderRadius: 4,
   },
   progressFill: {
     height: "100%",
-    backgroundColor: "#D4A276", // 눈에 잘 띄는 밝은 갈색
+    backgroundColor: "#D4A276",
     borderRadius: 4,
   },
 });

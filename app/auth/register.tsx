@@ -1,18 +1,20 @@
 import FormNextButton from "@/components/atoms/form/FormNextButton";
 import FormPrevButton from "@/components/atoms/form/FormPrevButton";
-import FormTitle from "@/components/atoms/form/FormTitle";
-import FormInput from "@/components/atoms/form/FormInput";
 import ProgressBar from "@/components/atoms/form/ProgressBar";
 import React, { useState } from "react";
 import {
   View,
   StyleSheet,
   SafeAreaView,
-  KeyboardTypeOptions,
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
 import SlideTransition from "@/components/SlideTransition";
+import { useFunnel } from "@/hooks/useFunnel";
+import NamePage from "./register/Name";
+import EmailPage from "./register/Email";
+import PhonePage from "./register/Phone";
+import PasswordPage from "./register/Password";
 
 interface FormData {
   name: string;
@@ -21,37 +23,8 @@ interface FormData {
   password: string;
 }
 
-interface Step {
-  id: keyof FormData;
-  title: string;
-  placeholder: string;
-  keyboardType?: KeyboardTypeOptions;
-}
-
-const steps: Step[] = [
-  {
-    id: "name",
-    title: "이름을 입력해주세요",
-    placeholder: "이름",
-  },
-  {
-    id: "email",
-    title: "이메일을 입력해주세요",
-    placeholder: "이메일",
-    keyboardType: "email-address",
-  },
-  {
-    id: "phone",
-    title: "전화번호를 입력해주세요",
-    placeholder: "전화번호",
-    keyboardType: "number-pad",
-  },
-  {
-    id: "password",
-    title: "비밀번호를 입력해주세요",
-    placeholder: "비밀번호",
-  },
-];
+type StepId = "name" | "email" | "phone" | "password";
+const STEPS: StepId[] = ["name", "email", "phone", "password"];
 
 const StepForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -61,27 +34,21 @@ const StepForm: React.FC = () => {
     password: "",
   });
 
-  const [currentStep, setCurrentStep] = useState<number>(0);
+  const { Funnel, Step, currentStep, nextStep, prevStep, isLastStep, setStep } =
+    useFunnel<StepId>(STEPS);
 
-  const handleChange = (value: string): void => {
-    const currentField = steps[currentStep].id;
+  const handleChange = (field: keyof FormData) => (value: string) => {
     setFormData({
       ...formData,
-      [currentField]: value,
+      [field]: value,
     });
   };
 
   const handleNext = (): void => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1);
+    if (!isLastStep()) {
+      nextStep();
     } else {
       handleSubmit();
-    }
-  };
-
-  const handlePrevious = (): void => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
     }
   };
 
@@ -95,46 +62,81 @@ const StepForm: React.FC = () => {
       phone: "",
       password: "",
     });
-    setCurrentStep(0);
+    setStep("name");
   };
 
-  const currentValue = formData[steps[currentStep].id];
+  const isCurrentStepValid = (): boolean => {
+    const currentValue = formData[currentStep as keyof FormData];
+    return currentValue.trim() !== "";
+  };
 
-  const isCurrentStepValid = currentValue.trim() !== "";
+
+  const currentStepIndex = STEPS.indexOf(currentStep as StepId);
 
   return (
     <KeyboardAvoidingView
       style={{
         flex: 1,
-        padding: 32,
         backgroundColor: "#603F26",
       }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS === "ios" ? 10 : 0}
     >
-      <SafeAreaView></SafeAreaView>
-      <SlideTransition>
-        <ProgressBar currentStep={currentStep} stepLength={steps.length} />
-      </SlideTransition>
-
-      <SlideTransition>
-        <FormTitle title={steps[currentStep].title} />
-        <FormInput
-          placeholder={steps[currentStep].placeholder}
-          value={currentValue}
-          onChangeText={handleChange}
-          keyboardType={steps[currentStep].keyboardType}
-          autoFocus
-        />
-        <View style={styles.buttonContainer}>
-          {currentStep > 0 && (
-            <FormPrevButton onPress={handlePrevious}>이전</FormPrevButton>
-          )}
-          <FormNextButton valid={isCurrentStepValid} handleNext={handleNext}>
-            다음
-          </FormNextButton>
-        </View>
-      </SlideTransition>
+      <SafeAreaView />
+      <View
+        style={{
+          flex: 1,
+          padding: 32,
+          paddingBottom: 0,
+        }}
+      >
+        <SlideTransition style={{ flex: 1 }}>
+          <ProgressBar
+            currentStep={currentStepIndex}
+            stepLength={STEPS.length}
+          />
+          <View style={{ flex: 1 }}>
+            <Funnel step={currentStep}>
+              <Step name="name">
+                <NamePage
+                  currentValue={formData.name}
+                  handleChange={handleChange("name")}
+                />
+              </Step>
+              <Step name="email">
+                <EmailPage
+                  currentValue={formData.email}
+                  handleChange={handleChange("email")}
+                />
+              </Step>
+              <Step name="phone">
+                <PhonePage
+                  currentValue={formData.phone}
+                  handleChange={handleChange("phone")}
+                />
+              </Step>
+              <Step name="password">
+                <PasswordPage
+                  currentValue={formData.password}
+                  handleChange={handleChange("password")}
+                />
+              </Step>
+            </Funnel>
+          </View>
+          <View style={styles.buttonContainer}>
+            {currentStepIndex > 0 && (
+              <FormPrevButton onPress={prevStep}>이전</FormPrevButton>
+            )}
+            <FormNextButton
+              valid={isCurrentStepValid()}
+              handleNext={handleNext}
+            >
+              {isLastStep() ? "제출" : "다음"}
+            </FormNextButton>
+          </View>
+        </SlideTransition>
+      </View>
+      <SafeAreaView />
     </KeyboardAvoidingView>
   );
 };

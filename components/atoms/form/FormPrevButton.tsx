@@ -1,4 +1,4 @@
-// FormPrevButton.tsx
+
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
 
   },
   buttonText: {
-    color: "#815C42", // 배경보다 약간 밝은 갈색
+    color: "#815C42",
     fontSize: 16,
     fontWeight: "500",
   },
 });
 
-export default FormPrevButton;
+export default FormPrevButton

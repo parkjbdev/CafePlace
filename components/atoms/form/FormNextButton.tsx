@@ -2,7 +2,6 @@ import React from "react";
 import {
   Text,
   TouchableOpacity,
-  View,
   StyleSheet,
   TouchableOpacityProps,
 } from "react-native";
@@ -46,24 +45,24 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   backButton: {
-    backgroundColor: "#815C42", // 배경보다 약간 밝은 갈색
+    backgroundColor: "#815C42",
     flex: 1,
     marginRight: 10,
   },
   nextButton: {
-    backgroundColor: "#6C4E31", // 원래 색상으로 복원
+    backgroundColor: "#6C4E31",
     flex: 2,
   },
   submitButton: {
-    backgroundColor: "#8B6B43", // 더 어두운 갈색
+    backgroundColor: "#8B6B43",
     flex: 2,
   },
   disabledButton: {
-    backgroundColor: "#9C7A5B", // 중간 갈색
+    backgroundColor: "#9C7A5B",
     opacity: 0.7,
   },
   buttonText: {
-    color: "white", // 원래 색상으로 복원
+    color: "white",
     fontSize: 16,
     fontWeight: "bold",
   },
