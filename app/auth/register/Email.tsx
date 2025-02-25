@@ -1,23 +1,14 @@
-import React from "react";
-import FormTitle from "@/components/atoms/form/FormTitle";
-import FormInput from "@/components/atoms/form/FormInput";
+import FormPageInputField from "@/components/organisms/form/FormPageInputField";
 import { FormPageProps } from "./types";
-import SlideTransition from "@/components/SlideTransition";
 
-const EmailPage: React.FC<FormPageProps> = ({ currentValue, handleChange }) => {
+const EmailPage: React.FC<FormPageProps> = (props) => {
   return (
-    <>
-      <SlideTransition>
-        <FormTitle title="이메일을 입력해주세요" />
-      </SlideTransition>
-      <FormInput
-        placeholder="이메일"
-        value={currentValue}
-        onChangeText={handleChange}
-        keyboardType="email-address"
-        autoFocus
-      />
-    </>
+    <FormPageInputField
+      title="이메일을 입력해주세요"
+      description="이메일은 로그인에 사용됩니다"
+      placeholder="이메일"
+      {...props}
+    />
   );
 };
 

@@ -1,21 +1,14 @@
-import FormTitle from "@/components/atoms/form/FormTitle";
-import FormInput from "@/components/atoms/form/FormInput";
+import FormPageInputField from "@/components/organisms/form/FormPageInputField";
 import { FormPageProps } from "./types";
-import SlideTransition from "@/components/SlideTransition";
 
-const NamePage = ({ currentValue, handleChange }: FormPageProps) => {
+const NamePage: React.FC<FormPageProps> = (props) => {
   return (
-    <>
-      <SlideTransition>
-        <FormTitle title="이름을 알려주세요" />
-      </SlideTransition>
-      <FormInput
-        placeholder="이름"
-        value={currentValue}
-        onChangeText={handleChange}
-        autoFocus
-      />
-    </>
+    <FormPageInputField
+      title="이름을 알려주세요"
+      description="CafePlace의 닉네임으로 사용됩니다"
+      placeholder="이름"
+      {...props}
+    />
   );
 };
 

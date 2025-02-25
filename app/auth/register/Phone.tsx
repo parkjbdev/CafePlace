@@ -1,23 +1,14 @@
-import React from "react";
-import FormTitle from "@/components/atoms/form/FormTitle";
-import FormInput from "@/components/atoms/form/FormInput";
+import FormPageInputField from "@/components/organisms/form/FormPageInputField";
 import { FormPageProps } from "./types";
-import SlideTransition from "@/components/SlideTransition";
 
-const PhonePage: React.FC<FormPageProps> = ({ currentValue, handleChange }) => {
+const PhonePage: React.FC<FormPageProps> = (props) => {
   return (
-    <>
-      <SlideTransition>
-        <FormTitle title="전화번호를 입력해주세요" />
-      </SlideTransition>
-      <FormInput
-        placeholder="전화번호"
-        value={currentValue}
-        onChangeText={handleChange}
-        keyboardType="phone-pad"
-        autoFocus
-      />
-    </>
+    <FormPageInputField
+      title="전화번호를 입력해주세요"
+      description="010-1234-5678 과 같이 휴대전화를 입력해주세요"
+      placeholder="전화번호"
+      {...props}
+    />
   );
 };
 

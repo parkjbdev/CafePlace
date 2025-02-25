@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   description: {
-    fontSize: 16,
+    fontSize: 12,
     color: "#D4BBA7",
     fontWeight: "400",
   },
