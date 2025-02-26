@@ -1,5 +1,6 @@
+import { Colors } from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
-import { GestureResponderEvent, StyleProp, StyleSheet, Text, TextStyle, TouchableOpacity, View, ViewProps } from "react-native";
+import { GestureResponderEvent, StyleProp, StyleSheet, Text, TextStyle, TouchableOpacity, View, ViewProps, useColorScheme } from "react-native";
 
 const SectionList = (props: ViewProps & { title?: string }) => {
   return <View {...props} style={styles.section}>
@@ -11,13 +12,14 @@ const SectionList = (props: ViewProps & { title?: string }) => {
 }
 
 const SectionElement = (props: ViewProps & { textStyle?: StyleProp<TextStyle>, value?: string, isFirst?: boolean, isLast?: boolean, label: string, hideChevron?: boolean, onPress?: (event: GestureResponderEvent) => void }) => {
+  const theme = useColorScheme() ?? 'light';
   const { textStyle, isFirst, isLast, label, hideChevron = false, onPress } = props;
-  return <View {...props} style={[styles.rowWrapper, isFirst && styles.rowFirst, isLast && styles.rowLast, (!props.children && hideChevron && isFirst && isLast) && { alignItems: "center" }, props.style]}>
-    <TouchableOpacity onPress={onPress} style={styles.row}>
-      <Text style={[styles.rowLabel, textStyle]}>{label}</Text>
-      <View style={styles.rowSpacer}></View>
+  return <View {...props} style={[styles.rowWrapper, isFirst && styles.rowFirst, isLast && styles.rowLast, (!props.children && hideChevron && isFirst && isLast) && { alignItems: "center" }, { backgroundColor: Colors[theme ?? 'light'].background }, props.style]}>
+    <TouchableOpacity onPress={onPress} style={[styles.row,]}>
+      <Text style={[styles.rowLabel, { color: Colors[theme ?? 'light'].text }, textStyle]}>{label}</Text>
+      <View style={[styles.rowSpacer]}></View>
       {props.children}
-      {props.value && <Text style={styles.rowValue}>{props.value}</Text>}
+      {props.value && <Text style={[styles.rowValue]}>{props.value}</Text>}
       {!hideChevron && <Ionicons name="chevron-forward" size={19} color="#bcbcbc" />}
     </TouchableOpacity>
   </View>
@@ -95,11 +97,13 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     backgroundColor: '#fff',
     borderTopWidth: 1,
+    // borderColor: Colors[this.theme ?? 'light'].border,
     borderColor: '#f0f0f0',
   },
   rowFirst: {
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
+    borderTopWidth: 0,
   },
   rowLabel: {
     fontSize: 16,

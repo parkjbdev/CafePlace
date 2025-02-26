@@ -29,7 +29,7 @@ Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labor
 
 
   return (
-    <ScrollView style={{ flex: 1, padding: 32 }} >
+    <ScrollView style={{ flex: 1, padding: 32, backgroundColor: "#FFFFFF", opacity: 0.8 }} >
       <SafeAreaView />
       {/* <WebView */}
       {/*   style={{ flex: 1, marginTop: 0, padding: 0, height: 800 }} */}

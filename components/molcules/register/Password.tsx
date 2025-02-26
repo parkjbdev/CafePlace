@@ -1,9 +1,8 @@
 import React from "react";
-import { FormPageProps } from "./types";
-import { StyleSheet } from "react-native";
-import FormPageInputField from "@/components/organisms/form/FormPageInputField";
+import FormPageInputField from "@/components/molcules/form/FormPageInputField";
+import { FormPageProps } from "../form/types";
 
-const PasswordPage = ({ ...props }: FormPageProps) => {
+const PasswordPage: React.FC<FormPageProps> = (props) => {
   return (
     <>
       <FormPageInputField
@@ -16,6 +15,5 @@ const PasswordPage = ({ ...props }: FormPageProps) => {
     </>
   );
 };
-
 
 export default PasswordPage;

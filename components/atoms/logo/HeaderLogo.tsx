@@ -11,9 +11,4 @@ export const HeaderLogo = (props: { viewStyle?: StyleProp<ViewStyle>, logoStyle?
 //     <Logo style={[{ fontSize: 30, color: "#FFDBB5" }, props.logoStyle]} />
 //   </SafeAreaView>
 
-
-// header: () => {
-//   return <SafeAreaView><Logo style={{ fontSize: 24 }} /></SafeAreaView>
-// },
-
 export default HeaderLogo;

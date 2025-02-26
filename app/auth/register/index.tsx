@@ -11,10 +11,7 @@ import {
 } from "react-native";
 import SlideTransition from "@/components/SlideTransition";
 import { useFunnel } from "@/hooks/useFunnel";
-import NamePage from "./register/Name";
-import EmailPage from "./register/Email";
-import PhonePage from "./register/Phone";
-import PasswordPage from "./register/Password";
+import { NamePage, EmailPage, PhonePage, PasswordPage } from "@/components/molcules/register";
 
 interface FormData {
   name: string;
@@ -69,7 +66,6 @@ const StepForm: React.FC = () => {
     const currentValue = formData[currentStep as keyof FormData];
     return currentValue.trim() !== "";
   };
-
 
   const currentStepIndex = STEPS.indexOf(currentStep as StepId);
 
@@ -153,3 +149,4 @@ const styles = StyleSheet.create({
 });
 
 export default StepForm;
+

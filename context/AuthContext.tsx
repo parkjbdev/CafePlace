@@ -23,9 +23,9 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
       setSession(session)
 
       if (session) {
-        router.replace('/(tabs)/curations');
+        router.replace('/(tabs)');
       } else {
-        router.replace('/auth/login')
+        router.replace('/auth')
       }
     })
   }, []);

@@ -5,7 +5,7 @@
 // https://colorhunt.co/palettes/coffee
 
 const tintColorLight = '#603F26';
-const tintColorDark = '#fff';
+const tintColorDark = '#FFDBB5';
 
 export const Colors = {
   light: {
@@ -19,6 +19,7 @@ export const Colors = {
   dark: {
     text: '#ECEDEE',
     background: '#151718',
+    pointBackground: '#603F26',
     tint: tintColorDark,
     icon: '#9BA1A6',
     tabIconDefault: '#9BA1A6',

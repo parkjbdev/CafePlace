@@ -1,5 +1,5 @@
-import FormPageInputField from "@/components/organisms/form/FormPageInputField";
-import { FormPageProps } from "./types";
+import FormPageInputField from "@/components/molcules/form/FormPageInputField";
+import { FormPageProps } from "../form/types";
 
 const EmailPage: React.FC<FormPageProps> = (props) => {
   return (
