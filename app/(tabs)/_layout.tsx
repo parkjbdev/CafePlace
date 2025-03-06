@@ -1,12 +1,10 @@
-import { Stack, Tabs } from "expo-router";
+import { Tabs } from "expo-router";
 import React from "react";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import Logo from "@/components/atoms/logo/Logo";
-import { SafeAreaView, View } from "react-native";
 import HeaderLogo from "@/components/atoms/logo/HeaderLogo";
-import { ThemedText } from "@/components/ThemedText";
+import { View } from "react-native";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -20,11 +18,11 @@ export default function TabLayout() {
         // tabBarInactiveBackgroundColor: Colors[colorScheme ?? 'light'].background,
         // tabBarBackground: Colors[colorScheme ?? 'light'].background,
         headerShown: false,
-        header: (props) => <HeaderLogo />,
+        header: (props) => <HeaderLogo viewStyle={{ position: "absolute" }} />,
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="curation"
         options={{
           title: "큐레이션",
           headerShown: true,
@@ -72,7 +70,7 @@ export default function TabLayout() {
       /> */}
 
       <Tabs.Screen
-        name="myinfo"
+        name="settings"
         options={{
           title: "내 정보",
           headerShown: false,

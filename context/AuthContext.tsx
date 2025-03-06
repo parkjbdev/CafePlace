@@ -25,7 +25,7 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
       if (session) {
         router.replace('/(tabs)');
       } else {
-        router.replace('/auth')
+        router.replace('/')
       }
     })
   }, []);
@@ -33,9 +33,7 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
   return <AuthContext.Provider value={{ session, loading }}>
     {children}
   </AuthContext.Provider>
-
 }
-export default AuthContext
 
 export const useAuth = () => {
   const context = useContext(AuthContext)
@@ -44,4 +42,6 @@ export const useAuth = () => {
   }
   return context
 }
+
+export default AuthContext
 

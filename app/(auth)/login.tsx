@@ -1,7 +1,7 @@
 import FormNextButton from "@/components/atoms/form/FormNextButton";
 import FormPrevButton from "@/components/atoms/form/FormPrevButton";
 import ProgressBar from "@/components/atoms/form/ProgressBar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -11,30 +11,36 @@ import {
 } from "react-native";
 import SlideTransition from "@/components/SlideTransition";
 import { useFunnel } from "@/hooks/useFunnel";
-import { NamePage, EmailPage, PhonePage, PasswordPage } from "@/components/molcules/register";
+import { EmailPage, PasswordPage } from "@/components/molcules/register";
+import supabase from "@/api/supabase";
+import { router } from "expo-router";
+import useAuth from "@/hooks/useAuth";
+import { SignInForm } from "@/types/SignInForm";
 
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  password: string;
-}
-
-type StepId = "name" | "email" | "phone" | "password";
-const STEPS: StepId[] = ["name", "email", "phone", "password"];
+type StepId = "email" | "password";
+const STEPS: StepId[] = ["email", "password"];
 
 const StepForm: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
+  const {
+    user,
+    session,
+    authState,
+    loading,
+    signIn,
+    signUp,
+    signOut,
+    resetPassword,
+  } = useAuth();
+
+  const [formData, setFormData] = useState<SignInForm>({
     email: "",
-    phone: "",
     password: "",
   });
 
   const { Funnel, Step, currentStep, nextStep, prevStep, isLastStep, setStep } =
     useFunnel<StepId>(STEPS);
 
-  const handleChange = (field: keyof FormData) => (value: string) => {
+  const handleChange = (field: keyof SignInForm) => (value: string) => {
     setFormData({
       ...formData,
       [field]: value,
@@ -49,21 +55,22 @@ const StepForm: React.FC = () => {
     }
   };
 
-  const handleSubmit = (): void => {
-    console.log("제출된 데이터:", formData);
-    alert("폼이 성공적으로 제출되었습니다!");
+  const handleSubmit = async () => {
+    signIn(formData);
 
     setFormData({
-      name: "",
       email: "",
-      phone: "",
       password: "",
     });
-    setStep("name");
   };
 
+  useEffect(() => {
+    if (!session) return;
+    router.replace("/curation");
+  }, [session]);
+
   const isCurrentStepValid = (): boolean => {
-    const currentValue = formData[currentStep as keyof FormData];
+    const currentValue = formData[currentStep as keyof SignInForm];
     return currentValue.trim() !== "";
   };
 
@@ -92,22 +99,10 @@ const StepForm: React.FC = () => {
           />
           <View style={{ flex: 1 }}>
             <Funnel step={currentStep}>
-              <Step name="name">
-                <NamePage
-                  currentValue={formData.name}
-                  handleChange={handleChange("name")}
-                />
-              </Step>
               <Step name="email">
                 <EmailPage
                   currentValue={formData.email}
                   handleChange={handleChange("email")}
-                />
-              </Step>
-              <Step name="phone">
-                <PhonePage
-                  currentValue={formData.phone}
-                  handleChange={handleChange("phone")}
                 />
               </Step>
               <Step name="password">
@@ -149,4 +144,3 @@ const styles = StyleSheet.create({
 });
 
 export default StepForm;
-
