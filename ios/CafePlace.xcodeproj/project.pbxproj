@@ -63,6 +63,7 @@
 		D33DA12B909D4C75A55705E0 /* CormorantGaramond-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CormorantGaramond-BoldItalic.ttf"; path = "../assets/fonts/CormorantGaramond-BoldItalic.ttf"; sourceTree = "<group>"; };
 		D7BBAE65AA1246A5923A3410 /* CormorantGaramond-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CormorantGaramond-Bold.ttf"; path = "../assets/fonts/CormorantGaramond-Bold.ttf"; sourceTree = "<group>"; };
 		D9599142140F49F59A9AAF01 /* CormorantGaramond-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CormorantGaramond-Regular.ttf"; path = "../assets/fonts/CormorantGaramond-Regular.ttf"; sourceTree = "<group>"; };
+		DC215F602D7A9A8F0018D4DF /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		DE6BBA88AC1A47BA82B2693F /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "CafePlace/noop-file.swift"; sourceTree = "<group>"; };
 		E5B168F6C04D9FD9B6EB01C5 /* Pods-CafePlace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CafePlace.release.xcconfig"; path = "Target Support Files/Pods-CafePlace/Pods-CafePlace.release.xcconfig"; sourceTree = "<group>"; };
 		E77A44AFBCFC429C8D46AD94 /* CormorantGaramond-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CormorantGaramond-LightItalic.ttf"; path = "../assets/fonts/CormorantGaramond-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -121,6 +122,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				DC215F5E2D7A9A570018D4DF /* ci_scripts */,
 				13B07FAE1A68108700A75B9A /* CafePlace */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -199,6 +201,14 @@
 				92DBD88DE9BF7D494EA9DA96 /* CafePlace */,
 			);
 			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
+		DC215F5E2D7A9A570018D4DF /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				DC215F602D7A9A8F0018D4DF /* ci_post_clone.sh */,
+			);
+			path = ci_scripts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -525,10 +535,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -590,10 +597,7 @@
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				NEW_SETTING = "";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
