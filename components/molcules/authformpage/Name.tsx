@@ -1,7 +1,8 @@
-import FormPageInputField from "@/components/molcules/form/FormPageInputField";
-import { FormPageProps } from "../form/types";
+import FormPageInputField, {
+  FormPageInputFieldProps,
+} from "@/components/molcules/form/FormPageInputField";
 
-const NamePage: React.FC<FormPageProps> = (props) => {
+const NamePage: React.FC<FormPageInputFieldProps> = (props) => {
   return (
     <FormPageInputField
       title="이름을 알려주세요"

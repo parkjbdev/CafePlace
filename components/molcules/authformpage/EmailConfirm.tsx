@@ -1,7 +1,8 @@
-import FormPageInputField from "@/components/molcules/form/FormPageInputField";
-import { FormPageProps } from "../form/types";
+import FormPageInputField, {
+  FormPageInputFieldProps,
+} from "@/components/molcules/form/FormPageInputField";
 
-const EmailConfirmPage: React.FC<FormPageProps> = (props) => {
+const EmailConfirmPage: React.FC<FormPageInputFieldProps> = (props) => {
   return (
     <FormPageInputField
       title="이메일로 인증번호를 발송하였습니다"

@@ -21,7 +21,7 @@ const FormInput = ({
 }: FormInputProps & TextInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(secure);
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -38,6 +38,7 @@ const FormInput = ({
       >
         <TextInput
           style={[styles.input, props.style]}
+          secureTextEntry={isPasswordVisible}
           {...props}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
@@ -52,7 +53,7 @@ const FormInput = ({
             activeOpacity={0.7}
           >
             <Feather
-              name={isPasswordVisible ? "eye-off" : "eye"}
+              name={isPasswordVisible ? "eye": "eye-off" }
               size={20}
               color="#D4BBA7"
             />

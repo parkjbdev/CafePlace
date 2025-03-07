@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import SlideTransition from "@/components/SlideTransition";
 import { useFunnel } from "@/hooks/useFunnel";
-import { EmailPage, PasswordPage } from "@/components/molcules/register";
+import { EmailPage, PasswordPage } from "@/components/molcules/authformpage";
 import supabase from "@/api/supabase";
 import { router } from "expo-router";
 import useAuth from "@/hooks/useAuth";
@@ -56,12 +56,13 @@ const StepForm: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    signIn(formData);
-
-    setFormData({
-      email: "",
-      password: "",
-    });
+    const { data, error } = await signIn(formData);
+    if (!!data) {
+      setFormData({
+        email: "",
+        password: "",
+      });
+    }
   };
 
   useEffect(() => {
@@ -101,12 +102,16 @@ const StepForm: React.FC = () => {
             <Funnel step={currentStep}>
               <Step name="email">
                 <EmailPage
+                  onSubmitEditing={handleNext}
+                  description="회원가입시 입력한 이메일 주소를 입력해주세요."
                   currentValue={formData.email}
                   handleChange={handleChange("email")}
                 />
               </Step>
               <Step name="password">
                 <PasswordPage
+                  onSubmitEditing={handleNext}
+                  description=""
                   currentValue={formData.password}
                   handleChange={handleChange("password")}
                 />

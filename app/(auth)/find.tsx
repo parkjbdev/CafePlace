@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import SlideTransition from "@/components/SlideTransition";
 import { useFunnel } from "@/hooks/useFunnel";
-import { EmailPage, NamePage, PhonePage } from "@/components/molcules/find";
+import { EmailPage, NamePage, PhonePage } from "@/components/molcules/authformpage";
 
 interface FormData {
   name: string;
@@ -92,18 +92,21 @@ const StepForm: React.FC = () => {
             <Funnel step={currentStep}>
               <Step name="name">
                 <NamePage
+                  onSubmitEditing={handleNext}
                   currentValue={formData.name}
                   handleChange={handleChange("name")}
                 />
               </Step>
               <Step name="email">
                 <EmailPage
+                  onSubmitEditing={handleNext}
                   currentValue={formData.email}
                   handleChange={handleChange("email")}
                 />
               </Step>
               <Step name="phone">
                 <PhonePage
+                  onSubmitEditing={handleNext}
                   currentValue={formData.phone}
                   handleChange={handleChange("phone")}
                 />

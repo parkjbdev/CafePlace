@@ -1,7 +1,8 @@
-import FormPageInputField from "@/components/molcules/form/FormPageInputField";
-import { FormPageProps } from "../form/types";
+import FormPageInputField, {
+  FormPageInputFieldProps,
+} from "@/components/molcules/form/FormPageInputField";
 
-const PhonePage: React.FC<FormPageProps> = (props) => {
+const PhonePage: React.FC<FormPageInputFieldProps> = (props) => {
   return (
     <FormPageInputField
       title="전화번호를 입력해주세요"

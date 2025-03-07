@@ -16,8 +16,8 @@ import {
   EmailPage,
   PhonePage,
   PasswordPage,
-} from "@/components/molcules/register";
-import EmailConfirmPage from "@/components/molcules/register/EmailConfirm";
+  EmailConfirmPage,
+} from "@/components/molcules/authformpage";
 import useAuth from "@/hooks/useAuth";
 import { router } from "expo-router";
 import supabase from "@/api/supabase";
@@ -156,24 +156,28 @@ const StepForm: React.FC = () => {
             <Funnel step={currentStep}>
               <Step name="name">
                 <NamePage
+                  onSubmitEditing={handleNext}
                   currentValue={formData.name}
                   handleChange={handleChange("name")}
                 />
               </Step>
               <Step name="email">
                 <EmailPage
+                  onSubmitEditing={handleNext}
                   currentValue={formData.email}
                   handleChange={handleChange("email")}
                 />
               </Step>
               <Step name="password">
                 <PasswordPage
+                  onSubmitEditing={handleNext}
                   currentValue={formData.password}
                   handleChange={handleChange("password")}
                 />
               </Step>
               <Step name="emailConfirm">
                 <EmailConfirmPage
+                  onSubmitEditing={handleNext}
                   currentValue={formData.emailConfirm}
                   handleChange={handleChange("emailConfirm")}
                 />

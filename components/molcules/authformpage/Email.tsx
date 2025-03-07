@@ -1,7 +1,8 @@
-import FormPageInputField from "@/components/molcules/form/FormPageInputField";
-import { FormPageProps } from "../form/types";
+import FormPageInputField, {
+  FormPageInputFieldProps,
+} from "@/components/molcules/form/FormPageInputField";
 
-const EmailPage: React.FC<FormPageProps> = (props) => {
+const EmailPage: React.FC<FormPageInputFieldProps> = (props) => {
   return (
     <FormPageInputField
       title="이메일을 입력해주세요"
